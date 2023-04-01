@@ -50,12 +50,19 @@ void main()
     __data uint8_t  slider_pos   = 0;
     __data uint16_t SW_interval  = 500;
 
-    OLED_printxy(0, 0, "===SLLB120200 Test===");
-    OLED_printxy(0, 2, "PIN  1 2 T 3 4 C");
-    OLED_printxy(0, 3, "               G");
-    OLED_printxy(0, 5, "Val =        SW = OFF");
-    OLED_printxy(0, 6, "--------------------+");
-    OLED_printxy(0, 7, "#====================");
+    OLED_setFont(FONT_5x8);
+    OLED_setCursor(0, 0);
+    OLED_print("===SLLB120200 Test===");
+    OLED_setCursor(2, 0);
+    OLED_print("PIN  1 2 T 3 4 C");
+    OLED_setCursor(3, 0);
+    OLED_print("               G");
+    OLED_setCursor(5, 0);
+    OLED_print("Val =        SW = OFF");
+    OLED_setCursor(6, 0);
+    OLED_print("--------------------+");
+    OLED_setCursor(7, 0);
+    OLED_print("#====================");
 
     while (1)
     {
@@ -65,11 +72,16 @@ void main()
         b_SW_4 = PIN_read(SW_4);
         b_SW_T = PIN_read(SW_T);
 
-        OLED_printxy(5, 3, b_SW_1 ? "1" : "0");
-        OLED_printxy(7, 3, b_SW_2 ? "1" : "0");
-        OLED_printxy(9, 3, b_SW_T ? "1" : "0");
-        OLED_printxy(11, 3, b_SW_3 ? "1" : "0");
-        OLED_printxy(13, 3, b_SW_4 ? "1" : "0");
+        OLED_setCursor(3, 5);
+        OLED_write(b_SW_1 ? '1' : '0');
+        OLED_setCursor(3, 7);
+        OLED_write(b_SW_2 ? '1' : '0');
+        OLED_setCursor(3, 9);
+        OLED_write(b_SW_T ? '1' : '0');
+        OLED_setCursor(3, 11);
+        OLED_write(b_SW_3 ? '1' : '0');
+        OLED_setCursor(3, 13);
+        OLED_write(b_SW_4 ? '1' : '0');
 
         if (!b_SW_2)  // On Far-Left
         {
@@ -120,16 +132,22 @@ void main()
             SW_interval  = 500;
         }
 
+        OLED_setCursor(5, 6);
         sprintf(buf, "%03d", SW_value);
-        OLED_printxy(6, 5, buf);
-        OLED_printxy(18, 5, b_SW_T ? "OFF" : "ON ");
+        OLED_print(buf);
+        OLED_setCursor(5, 18);
+        OLED_print(b_SW_T ? "OFF" : "ON ");
         if (SW_value / 5 != slider_pos)
         {
-            OLED_printxy(20 - slider_pos, 6, "-");
-            OLED_printxy(slider_pos, 7, "=");
+            OLED_setCursor(6, 20 - slider_pos);
+            OLED_write('-');
+            OLED_setCursor(7, slider_pos);
+            OLED_write('=');
             slider_pos = SW_value / 5;
-            OLED_printxy(20 - slider_pos, 6, "+");
-            OLED_printxy(slider_pos, 7, "#");
+            OLED_setCursor(6, 20 - slider_pos);
+            OLED_write('+');
+            OLED_setCursor(7, slider_pos);
+            OLED_write('#');
         }
     }
 }

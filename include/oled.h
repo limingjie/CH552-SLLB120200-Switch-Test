@@ -7,7 +7,7 @@
 // References
 // - https://github.com/wagiminator/CH552-USB-OLED
 //
-// Mar 2023 by Li Mingjie
+// Apr 2023 by Li Mingjie
 // - Email:  limingjie@outlook.com
 // - GitHub: https://github.com/limingjie/
 //
@@ -15,11 +15,13 @@
 #pragma once
 #include <stdint.h>
 
-void OLED_init(void);          // OLED init function
-void OLED_clear(void);         // OLED clear screen
-void OLED_write(char c);       // OLED write a character or handle control characters
-void OLED_print(char* str);    // OLED print string
-void OLED_println(char* str);  // OLED print string with newline
-void OLED_setline(uint8_t line);
-void OLED_clearline(uint8_t line);
-void OLED_printxy(uint8_t x, uint8_t y, char* str);
+#define FONT_5x8           0
+#define FONT_DOS_8x16      1
+#define FONT_CHINESE_16x16 2
+
+void OLED_init(void);
+void OLED_clear(void);
+void OLED_setFont(uint8_t font);
+void OLED_setCursor(uint8_t row, uint8_t col);
+void OLED_write(char c);
+void OLED_print(const char* str);
