@@ -1,0 +1,17 @@
+# SDCC files
+*.asm
+*.lst
+*.mem
+*.rel
+*.rst
+*.sym
+*.adb
+*.lk
+*.map
+*.mem
+*.ihx
+*.hex
+*.bin
+
+# macOS
+.DS_Store
